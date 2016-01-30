@@ -11,11 +11,13 @@ var destRoot     = 'dest/';
 var releaseRoot  = 'demo/scripts/release';
 
 var sources = [
+  "demo/scripts/**/*.purs",
   "src/**/*.purs",
   "bower_components/purescript-*/src/**/*.purs",
 ];
 
 var foreigns = [
+  "demo/scripts/ui/**/*.js",
   "src/**/*.js",
   "bower_components/purescript-*/src/**/*.js"
 ];
@@ -49,7 +51,7 @@ gulp.task("bundle", ["make"], function () {
   return purescript.pscBundle({ src: "output/**/*.js", output: "dist/bundle.js" });
 });
 
-gulp.task("bundle-demo", function () {
+gulp.task("bundle-demo",["make-demo"], function () {
   return purescript.pscBundle({ src: "output/DemoApp.WithRedux/**/*.js", output: "dist/demo/bundle.js" });
 });
 
@@ -88,5 +90,5 @@ gulp.task("test", ["make"], function() {
 });
 
 
-gulp.task("build-demo", ["make-demo", "bundle-demo", "dotpsci-demo","webpack"]);
+gulp.task("build-demo", ["bundle-demo", "dotpsci-demo", "webpack"]);
 gulp.task("default", ["bundle", "dotpsci"]);

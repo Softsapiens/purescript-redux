@@ -1,6 +1,6 @@
-"use strict";
-
 // module Control.Monad.Eff.Ractive
+
+"use strict";
 
 var Ractive = require('ractive');
 
